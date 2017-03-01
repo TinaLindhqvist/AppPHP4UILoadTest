@@ -6,6 +6,7 @@ version: 0.1
 toolchain:
   name: 'simple-toolchain-{{timestamp}}'
 services:
+#GitHub
   sample-repo:
     service_id: githubpublic
     parameters:
@@ -13,6 +14,8 @@ services:
       repo_url: 'https://github.com/open-toolchain/node-hello-world'
       type: clone
       has_issues: true
+
+#Pipeline
   sample-build:
     service_id: pipeline
     parameters:
@@ -31,27 +34,29 @@ services:
           PROD_ORG_NAME: '{{form.pipeline.parameters.prod-organization}}'
           PROD_REGION_ID: '{{form.pipeline.parameters.prod-region}}'
         execute: true
+#Web IDE
   webide:
     service_id: orion
+      
+#Slack
+  slack:
+    service_id: slack
+  
+#PagerDuty
+  pagerduty:
+    service_id: pagerduty
+  
+#SauceLabs
+  saucelabs:
+    service_id: saucelabs
+  
+#Insights
+  dra:
+    service_id: draservicebroker
+
 form:
   pipeline:
     parameters:
       prod-app-name: '{{services.sample-repo.parameters.repo_name}}'
     schema:
       $ref: deploy.json
-      
-#Slack
-slack:
-  service_id: slack
-  
-#PagerDuty
-pagerduty:
-  service_id: pagerduty
-  
-#SauceLabs
-saucelabs:
-  service_id: saucelabs
-  
-#Insights
-dra:
-  service_id: draservicebroker
