@@ -8,7 +8,7 @@ stages:
   triggers:
   - type: commit
   jobs:
-  - name: Build
+  - name: Build1
     type: builder
 - name: DEPLOY
   inputs:
@@ -18,5 +18,8 @@ stages:
   triggers:
   - type: stage
   jobs:
-  - name: Deploy
+  - name: Deploy1
     type: deployer
+    script: |
+      #!/bin/bash
+      cf push "${CF_APP}"
