@@ -8,7 +8,7 @@ stages:
   triggers:
   - type: commit
   jobs:
-  - name: Build1
+  - name: Build
     type: builder
 - name: DEPLOY
   inputs:
@@ -18,7 +18,7 @@ stages:
   triggers:
   - type: stage
   jobs:
-  - name: Deploy1
+  - name: Deploy
     type: deployer
     script: |
       #!/bin/bash
