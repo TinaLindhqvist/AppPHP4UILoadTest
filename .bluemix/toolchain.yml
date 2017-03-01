@@ -41,9 +41,3 @@ services:
     service_id: saucelabs
   dra:
     service_id: draservicebroker
-form:
-  pipeline:
-    parameters:
-      prod-app-name: '{{services.sample-repo.parameters.repo_name}}'
-    schema:
-      $ref: deploy.json
