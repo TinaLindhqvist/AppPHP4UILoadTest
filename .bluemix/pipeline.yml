@@ -21,7 +21,3 @@ stages:
   jobs:
   - name: Deploy
     type: deployer
-    script: |
-      #!/bin/bash
-      # Push app
-      cf push $CF_APP
