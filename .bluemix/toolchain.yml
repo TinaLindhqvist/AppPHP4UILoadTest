@@ -3,28 +3,51 @@ name: "Toolchain Template to setup multiple tools"
 description: "Toolchain template to be used in UI Load testing"
 version: 0.1
 
-# Github repos
-repo:
-  service_id: githubpublic
-  parameters:
-   has_issues: false
-
-# Pipelines
-build:
-  service_id: pipeline
-  parameters:
-    ui-pipeline: true
-    configuration: 
-     content: $file(pipeline.yml)
-     env:
-      REPO: "repo"
-     execute: true
-    services: ["repo"]
-    
-#Web IDE
-webide:
-  service_id: orion
-  
+  required:
+    - sample-build
+    - sample-repo
+  info:
+    git url: >-
+      [https://github.com/open-toolchain/simple-toolchain.git](https://github.com/open-toolchain/simple-toolchain.git)
+    git branch: >-
+      [master](https://github.com/open-toolchain/simple-toolchain.git/tree/master)
+toolchain:
+  name: 'simple-toolchain-{{timestamp}}'
+services:
+  sample-repo:
+    service_id: githubpublic
+    parameters:
+      repo_name: '{{toolchain.name}}'
+      repo_url: 'https://github.com/open-toolchain/node-hello-world'
+      type: clone
+      has_issues: true
+  sample-build:
+    service_id: pipeline
+    parameters:
+      services:
+        - sample-repo
+      name: '{{toolchain.name}}'
+      ui-pipeline: true
+      configuration:
+        content:
+          $ref: pipeline.yml
+          $refType: text
+        env:
+          SAMPLE_REPO: sample-repo
+          CF_APP_NAME: '{{form.pipeline.parameters.prod-app-name}}'
+          PROD_SPACE_NAME: '{{form.pipeline.parameters.prod-space}}'
+          PROD_ORG_NAME: '{{form.pipeline.parameters.prod-organization}}'
+          PROD_REGION_ID: '{{form.pipeline.parameters.prod-region}}'
+        execute: true
+  webide:
+    service_id: orion
+form:
+  pipeline:
+    parameters:
+      prod-app-name: '{{services.sample-repo.parameters.repo_name}}'
+    schema:
+      $ref: deploy.json
+      
 #Slack
 slack:
   service_id: slack
@@ -37,3 +60,6 @@ pagerduty:
 saucelabs:
   service_id: saucelabs
   
+#Insights
+dra:
+  service_id: draservicebroker
