@@ -25,6 +25,7 @@ services:
           $refType: text
         env:
           SAMPLE_REPO: sample-repo
+          CF_APP_NAME: '{{toolchain.name}}'
         execute: true
   webide:
     service_id: orion
