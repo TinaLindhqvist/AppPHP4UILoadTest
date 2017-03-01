@@ -1,0 +1,39 @@
+---
+name: "Toolchain Template to setup multiple tools"
+description: "Toolchain template to be used in UI Load testing"
+version: 0.1
+
+# Github repos
+repo:
+  service_id: githubpublic
+  parameters:
+   has_issues: false
+
+# Pipelines
+build:
+  service_id: pipeline
+  parameters:
+    ui-pipeline: true
+    configuration: 
+     content: $file(pipeline.yml)
+     env:
+      REPO: "repo"
+     execute: true
+    services: ["repo"]
+    
+#Web IDE
+webide:
+  service_id: orion
+  
+#Slack
+slack:
+  service_id: slack
+  
+#PagerDuty
+pagerduty:
+  service_id: pagerduty
+  
+#SauceLabs
+saucelabs:
+  service_id: saucelabs
+  
