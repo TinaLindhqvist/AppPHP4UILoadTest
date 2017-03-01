@@ -4,13 +4,6 @@ description: "Toolchain template to be used in UI Load testing"
 version: 0.1
 toolchain:
   name: 'simple-toolchain-{{timestamp}}'
-sample-repo:
-  service_id: githubpublic
-  parameters:
-    repo_name: '{{toolchain.name}}'
-    repo_url: 'https://github.com/open-toolchain/node-hello-world'
-    type: clone
-    has_issues: true
 sample-build:
   service_id: pipeline
   parameters:
@@ -31,3 +24,11 @@ saucelabs:
   service_id: saucelabs
 dra:
   service_id: draservicebroker
+services:
+  sample-repo:
+    service_id: githubpublic
+    parameters:
+      repo_name: '{{toolchain.name}}'
+      repo_url: 'https://github.com/open-toolchain/node-hello-world'
+      type: clone
+      has_issues: true
