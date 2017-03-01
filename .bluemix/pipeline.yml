@@ -28,7 +28,4 @@ stages:
   - name: Blue-Green Deploy
     type: deployer
     target:
-      region_id: ${PROD_REGION_ID}
-      organization: ${PROD_ORG_NAME}
-      space: ${PROD_SPACE_NAME}
       application: ${CF_APP_NAME}
