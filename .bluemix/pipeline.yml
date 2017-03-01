@@ -24,7 +24,7 @@ stages:
       region_id: ibm:ys1:us-south
       organization: tinalindhqvist64@gmail.com
       space: dev
-      application: ${CF_APP}
+      application: ${CF_APP_NAME}
     script: |
       #!/bin/bash
       cf push "${CF_APP}"
