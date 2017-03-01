@@ -3,7 +3,7 @@ template:
   name: "Toolchain Template to setup multiple tools"
   description: "Toolchain template to be used in UI Load testing"
 toolchain:
-  name: 'simple-toolchain-{{timestamp}}'
+  name: 'loadtest-ui-{{timestamp}}'
 services:
   sample-repo:
     service_id: githubpublic
