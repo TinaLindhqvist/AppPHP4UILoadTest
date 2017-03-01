@@ -1,7 +1,7 @@
----
-name: "Toolchain Template to setup multiple tools"
-description: "Toolchain template to be used in UI Load testing"
-version: 0.1
+version: '2'
+template:
+  name: "Toolchain Template to setup multiple tools"
+  description: "Toolchain template to be used in UI Load testing"
 toolchain:
   name: 'simple-toolchain-{{timestamp}}'
 services:
