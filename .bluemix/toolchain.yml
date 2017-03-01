@@ -3,14 +3,6 @@ name: "Toolchain Template to setup multiple tools"
 description: "Toolchain template to be used in UI Load testing"
 version: 0.1
 
-  required:
-    - sample-build
-    - sample-repo
-  info:
-    git url: >-
-      [https://github.com/open-toolchain/simple-toolchain.git](https://github.com/open-toolchain/simple-toolchain.git)
-    git branch: >-
-      [master](https://github.com/open-toolchain/simple-toolchain.git/tree/master)
 toolchain:
   name: 'simple-toolchain-{{timestamp}}'
 services:
