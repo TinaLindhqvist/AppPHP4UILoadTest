@@ -4,7 +4,6 @@ stages:
   inputs:
   - type: git
     branch: master
-    service: ${SAMPLE_REPO}
   triggers:
   - type: commit
   jobs:
@@ -25,13 +24,8 @@ stages:
     value: undefined
     type: text
   jobs:
-  - name: Blue-Green Deploy
+  - name: Deploy
     type: deployer
-    target:
-      region_id: ${PROD_REGION_ID}
-      organization: ${PROD_ORG_NAME}
-      space: ${PROD_SPACE_NAME}
-      application: ${CF_APP_NAME}
     script: |
       #!/bin/bash
       # Push app
